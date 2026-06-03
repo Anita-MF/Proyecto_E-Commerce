@@ -105,6 +105,39 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .btn-f.alerta-btn{border-color:#C8A090;color:var(--red)}
 .btn-f.alerta-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
 
+/* Botones de alta/media/baja*/
+.btn-f-alta {
+  border-color: #C8A090;
+  color: var(--red);
+}
+.btn-f-alta.active {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+.btn-f-media {
+  border-color: #D4B870;
+  color: var(--amber);
+}
+
+.btn-f-media.active {
+  background: var(--amber);
+  color: #fff;
+  border-color: var(--amber);
+}
+
+.btn-f-baja {
+  border-color: #8FAF85;
+  color: var(--green);
+}
+
+.btn-f-baja.active {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
 /* DROPDOWN ALERTA */
 .dropdown-wrap{position:relative;display:inline-block}
 .dropdown-btn{padding:4px 12px;border-radius:3px;border:1px solid #C8A090;background:transparent;color:var(--red);cursor:pointer;font-size:10px;font-family:'DM Sans',sans-serif;letter-spacing:.05em}
@@ -328,9 +361,9 @@ tr:hover td{background:#F2EFE8}
           <div style="font-size:13px;font-weight:500;color:var(--ink2)">Filtrar por sucursal</div>
           <div style="display:flex;gap:6px" id="pri-btns">
             <button class="btn-f active" onclick="filtrarPrioridad('',this)">Todas</button>
-            <button class="btn-f" style="border-color:#C8A090;color:var(--red)" onclick="filtrarPrioridad('ALTA',this)">Alta</button>
-            <button class="btn-f" style="border-color:#D4B870;color:var(--amber)" onclick="filtrarPrioridad('MEDIA',this)">Media</button>
-            <button class="btn-f" style="border-color:#8FAF85;color:var(--green)" onclick="filtrarPrioridad('BAJA',this)">Baja</button>
+            <button class="btn-f btn-f-alta" onclick="filtrarPrioridad('ALTA',this)">Alta</button>
+            <button class="btn-f btn-f-media" onclick="filtrarPrioridad('MEDIA',this)">Media</button>
+            <button class="btn-f btn-f-baja" onclick="filtrarPrioridad('BAJA',this)">Baja</button>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1.2rem" id="suc-cards-compras"></div>
@@ -1055,12 +1088,12 @@ function filtrarPrioridad(pri, btn) {
   sucursalFiltro  = '';
   productoFiltro  = '';
   catFiltro       = '';
-  document.querySelectorAll('#prioridad-btns .btn-pri').forEach(b => {
-    b.classList.remove('sel');
+  document.querySelectorAll('.btn-f').forEach(b => {
+    b.classList.remove('active');
   });
   if (!eraActivo) {
     prioridadFiltro = pri;
-    btn.classList.add('sel');
+    btn.classList.add('active');
   }
   renderFiltrosSucCompras(todosProductos);
   renderFiltrosCatCompras(todosProductos);
